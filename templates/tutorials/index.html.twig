@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% if tutorial_number == 2 %}
-        You have run tutorial 2 example, which is a bit different in comparision to this from official page.
+        You have run tutorial {{ tutorial_number }} example, which is a bit different in comparision to this from official page.
+        This example took - {{ duration }} s.
+    {% endif %}
+
+    {% if tutorial_number == 3 %}
+        You have run tutorial {{ tutorial_number }} example, which is a bit different in comparision to this from official page.
         This example took - {{ duration }} s.
     {% endif %}
 {% endblock %}
