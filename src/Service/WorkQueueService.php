@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Rabbitmq\StreamSetup;
 use PhpAmqpLib\Message\AMQPMessage;
 
-class WorkQueueService
+class WorkQueueService implements RabbitMqInterface
 {
     /**
      * @var StreamSetup $streamSetup
@@ -44,6 +44,11 @@ class WorkQueueService
     public function getStreamSetup(): StreamSetup
     {
         return $this->streamSetup;
+    }
+
+    public function setExchange(string $exchange, string $type)
+    {
+        //use dafault, does not implement this here
     }
 
     public function runWorker(string $queue)

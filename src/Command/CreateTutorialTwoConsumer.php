@@ -7,7 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CreateConsumerCommand extends Command
+class CreateTutorialTwoConsumer extends Command
 {
     /**
      * @var WorkQueueService $workQueueService
@@ -15,7 +15,7 @@ class CreateConsumerCommand extends Command
     private $workQueueService;
 
     /**
-     * CreateConsumerCommand constructor.
+     * CreateTutorialTwoConsumer constructor.
      * @param WorkQueueService $workQueueService
      */
     public function __construct(WorkQueueService $workQueueService)
