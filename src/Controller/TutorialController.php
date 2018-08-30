@@ -19,24 +19,30 @@ class TutorialController extends Controller
     }
 
     /**
-     * @Route("/two", name="tutorial_2")
+     * @Route("/two/{iterations}", name="tutorial_2")
      * @param WorkQueueService $service
+     * @param int $iterations
      * @return Response
      */
-    public function two(WorkQueueService $service):Response
+    public function two(WorkQueueService $service, int $iterations = 50000): Response
     {
         $queue = 'task_queue';
         $service->setQueue($queue);
-        $msg = $service->setMessage('Hello world');
 
-        for($i=0; $i<50000; $i++)
-        {
+
+        $start = microtime(true);
+        for ($i = 0; $i < $iterations; $i++) {
+            $msg = $service->setMessage("Hello world {$i}..");
             $service
                 ->getStreamSetup()
                 ->getChannel()
                 ->basic_publish($msg, '', $queue);
         }
+        $stop = microtime(true);
 
-        return new Response('tutorial 2');
+        return $this->render('tutorials/index.html.twig', [
+            'tutorial_number' => 2,
+            'duration' => abs($stop - $start)
+        ]);
     }
 }

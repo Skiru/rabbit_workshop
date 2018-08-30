@@ -49,7 +49,8 @@ class WorkQueueService
     public function runWorker(string $queue)
     {
         $callback = function($msg) {
-            sleep(substr_count($msg->body, '.'));
+            echo '[x] Received', $msg->body, "\n";
+//            sleep(substr_count($msg->body, '.'));
             $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
         };
 
